@@ -25,6 +25,14 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void updateUI(dynamic weatherData) {
     setState(() {
+      // if any error test
+      if (weatherData == null) {
+        temperature = 0;
+        weatherIcon = 'Err';
+        weatherMessage = 'Sorry, Unable to get weather';
+        city = 'your city';
+        return;
+      }
       double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       weatherMessage = weatherModel.getMessage(temperature);
